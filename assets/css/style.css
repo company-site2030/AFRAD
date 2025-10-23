@@ -49,7 +49,7 @@ header nav a.cta:hover, header nav button:hover {
   margin: 60px auto;
   background: rgba(255,255,255,0.95);
   padding: 40px 30px;
-  border-radius: 15px;
+  border-radius: 20px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
   backdrop-filter: blur(8px);
   text-align: center;
@@ -128,46 +128,61 @@ header nav a.cta:hover, header nav button:hover {
 
 /* ===== Hero الصفحة الرئيسية ===== */
 .hero {
-  background: rgba(255,255,255,0.95);
-  margin: 30px auto;
-  padding: 30px 25px;
-  border-radius: 15px;
-  max-width: 800px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
 }
 
-.hero h2 {
-  font-size: 28px;
+.hero-content {
+  background: rgba(255,255,255,0.95);
+  padding: 35px 30px;
+  border-radius: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+  backdrop-filter: blur(6px);
+}
+
+.hero-content h2 {
+  font-size: 30px;
   color: #004080;
   margin-bottom: 15px;
 }
 
-.hero p {
-  font-size: 16px;
-  margin-bottom: 20px;
+.hero-content p {
+  font-size: 18px;
   color: #555;
+  margin-bottom: 25px;
 }
 
-.hero a.cta {
+.hero-content a.cta {
   font-size: 18px;
   padding: 12px 25px;
 }
 
-/* ===== Features ===== */
-.features {
+/* ===== Features الصفحة الرئيسية ===== */
+.features-content {
   background: rgba(255,255,255,0.95);
-  margin: 20px auto;
-  padding: 25px;
-  border-radius: 15px;
+  padding: 25px 20px;
+  border-radius: 20px;
   max-width: 800px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  margin: 30px auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  text-align: center;
 }
 
-.features ul {
+.features-content h3 {
+  font-size: 22px;
+  color: #004080;
+  margin-bottom: 15px;
+}
+
+.features-content ul {
   list-style: disc;
-  margin: 10px 0 0 20px;
+  margin-left: 20px;
+  color: #333;
+  font-size: 16px;
+  text-align: right;
 }
 
 /* ===== Dashboard البطاقات ===== */
