@@ -1,38 +1,99 @@
-// التأكد من تسجيل الدخول
-auth.onAuthStateChanged(user => {
+// Firebase setup
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAkTnnJRI_N-uIN-Z8d-3Bz_c_A0rl96DY",
+  authDomain: "afrad-9cac8.firebaseapp.com",
+  projectId: "afrad-9cac8",
+  storageBucket: "afrad-9cac8.firebasestorage.app",
+  messagingSenderId: "131437320877",
+  appId: "1:131437320877:web:13f8f134785c13d861c424",
+  measurementId: "G-JPF44HRBGW"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// ==========================
+// تسجيل مستخدم جديد
+// ==========================
+if(document.getElementById('registerForm')){
+  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fullName = document.getElementById('fullName').value;
+    const phone = document.getElementById('phone').value;
+    const nationalId = document.getElementById('nationalId').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await setDoc(doc(db, 'users', userCredential.user.uid), {
+        fullName, phone, nationalId, email, createdAt: new Date()
+      });
+      alert('تم التسجيل بنجاح');
+      window.location.href = 'login.html';
+    } catch(err) {
+      alert(err.message);
+    }
+  });
+}
+
+// ==========================
+// تسجيل دخول
+// ==========================
+if(document.getElementById('loginForm')){
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      window.location.href = 'dashboard.html';
+    } catch(err) {
+      alert(err.message);
+    }
+  });
+}
+
+// ==========================
+// Dashboard
+// ==========================
+onAuthStateChanged(auth, async (user) => {
   if(user){
     const uid = user.uid;
-    // جلب بيانات المستخدم
-    db.collection('users').doc(uid).get().then(doc => {
-      if(doc.exists){
-        const data = doc.data();
-        document.getElementById('userInfo').innerHTML = `
-          <h3>بيانات العميل</h3>
-          <p><strong>الاسم:</strong> ${data.fullName}</p>
-          <p><strong>الجوال:</strong> ${data.phone}</p>
-          <p><strong>رقم الهوية:</strong> ${data.nationalId}</p>
-          <p><strong>الإيميل:</strong> ${data.email}</p>
-        `;
-      }
-    });
 
-    // جلب بيانات المحفظة والرصيد (يمكنك تعديلها لاحقاً لإضافة حقول أخرى)
-    db.collection('wallets').doc(uid).get().then(doc => {
-      if(doc.exists){
-        const wallet = doc.data();
-        document.getElementById('walletInfo').innerHTML = `
-          <h3>المحفظة والرصيد</h3>
-          <p><strong>الرصيد:</strong> ${wallet.balance || 0} ريال سعودي</p>
-        `;
-      } else {
-        document.getElementById('walletInfo').innerHTML = `
-          <h3>المحفظة والرصيد</h3>
-          <p>الرصيد: 0 ريال سعودي</p>
-        `;
-      }
-    });
+    // بيانات المستخدم
+    const userDoc = await getDoc(doc(db, 'users', uid));
+    if(userDoc.exists()){
+      const data = userDoc.data();
+      document.getElementById('userInfo').innerHTML = `
+        <h3>بيانات العميل</h3>
+        <p><strong>الاسم:</strong> ${data.fullName}</p>
+        <p><strong>الجوال:</strong> ${data.phone}</p>
+        <p><strong>رقم الهوية:</strong> ${data.nationalId}</p>
+        <p><strong>الإيميل:</strong> ${data.email}</p>
+      `;
+    }
 
-    // بيانات السحب (البنوك المحلية السعودية افتراضياً)
+    // بيانات المحفظة (رصيد افتراضي)
+    const walletDoc = await getDoc(doc(db, 'wallets', uid));
+    let balance = 0;
+    if(walletDoc.exists()){
+      balance = walletDoc.data().balance || 0;
+    }
+    document.getElementById('walletInfo').innerHTML = `
+      <h3>المحفظة والرصيد</h3>
+      <p><strong>الرصيد:</strong> ${balance} ريال سعودي</p>
+    `;
+
+    // بيانات السحب
     document.getElementById('withdrawInfo').innerHTML = `
       <h3>السحب عبر البنوك المحلية</h3>
       <select id="bankSelect">
@@ -48,20 +109,32 @@ auth.onAuthStateChanged(user => {
       <button id="withdrawBtn">سحب</button>
     `;
 
-    // عملية السحب
-    document.getElementById('withdrawBtn').addEventListener('click', ()=>{
+    document.getElementById('withdrawBtn').addEventListener('click', async () => {
       const amount = parseFloat(document.getElementById('withdrawAmount').value);
+      const bank = document.getElementById('bankSelect').value;
       if(isNaN(amount) || amount <=0){
         alert('أدخل مبلغ صالح للسحب');
         return;
       }
-      const bank = document.getElementById('bankSelect').value;
-      // هنا تضيف عملية إرسال البيانات أو تعديل الرصيد في Firebase
       alert(`تم تقديم طلب سحب ${amount} ريال إلى ${bank}`);
+      // لاحقاً هنا يمكنك تحديث الرصيد في Firestore
     });
 
   } else {
-    // لو المستخدم غير مسجل دخول
-    window.location.href = 'login.html';
+    // إذا لم يكن المستخدم مسجل دخول
+    if(window.location.pathname.includes('dashboard.html')){
+      window.location.href = 'login.html';
+    }
   }
 });
+
+// ==========================
+// زر خروج
+// ==========================
+const logoutBtn = document.getElementById('logoutBtn');
+if(logoutBtn){
+  logoutBtn.addEventListener('click', async () => {
+    await signOut(auth);
+    window.location.href = 'login.html';
+  });
+}
