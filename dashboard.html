@@ -1,38 +1,25 @@
-
-<!doctype html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>داشبورد - حقوق الأفراد</title>
-<link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الداشبورد - حقوق الأفراد</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo">حقوق الأفراد</h1>
+  <header class="site-header">
+    <h1>داشبورد العميل</h1>
     <nav>
-      <a href="#" id="logoutBtn">خروج</a>
+      <button id="logoutBtn">خروج</button>
     </nav>
+  </header>
+
+  <div class="container dashboard">
+    <div class="card" id="userInfo">بيانات العميل</div>
+    <div class="card" id="walletInfo">المحفظة والرصيد</div>
+    <div class="card" id="withdrawInfo">السحب عبر البنوك المحلية</div>
   </div>
-</header>
-<main class="container">
-<h2>مرحبا بك في داشبوردك</h2>
-<div class="dashboard">
-  <div class="card" id="userInfo">بيانات العميل</div>
-  <div class="card" id="walletInfo">المحفظة والرصيد</div>
-  <div class="card" id="withdrawInfo">السحب عبر البنوك المحلية</div>
-</div>
-</main>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<script src="assets/js/app.js"></script>
-<script>
-// Logout button
-document.getElementById('logoutBtn').addEventListener('click',()=>{
-  auth.signOut().then(()=>window.location.href='login.html');
-});
-</script>
+
+  <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
