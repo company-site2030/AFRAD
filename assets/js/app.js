@@ -90,7 +90,7 @@ onAuthStateChanged(auth, async (user) => {
     }
     document.getElementById('walletInfo').innerHTML = `
       <h3>المحفظة والرصيد</h3>
-      <p><strong>الرصيد:</strong> ${balance} ريال سعودي</p>
+      <p><strong>الرصيد:</strong> ${balance}</p>
     `;
 
     // بيانات السحب
@@ -105,7 +105,7 @@ onAuthStateChanged(auth, async (user) => {
         <option>بنك الرياض</option>
       </select>
       <p>أدخل المبلغ المراد سحبه:</p>
-      <input type="number" id="withdrawAmount" placeholder="المبلغ بالريال">
+      <input type="number" id="withdrawAmount" placeholder="المبلغ">
       <button id="withdrawBtn">سحب</button>
     `;
 
@@ -116,12 +116,11 @@ onAuthStateChanged(auth, async (user) => {
         alert('أدخل مبلغ صالح للسحب');
         return;
       }
-      alert(`تم تقديم طلب سحب ${amount} ريال إلى ${bank}`);
+      alert(`تم تقديم طلب سحب ${amount} إلى ${bank}`);
       // لاحقاً هنا يمكنك تحديث الرصيد في Firestore
     });
 
   } else {
-    // إذا لم يكن المستخدم مسجل دخول
     if(window.location.pathname.includes('dashboard.html')){
       window.location.href = 'login.html';
     }
