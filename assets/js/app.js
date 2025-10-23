@@ -1,7 +1,6 @@
-// استورد Firebase من SDK الجديد
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAkTnnJRI_N-uIN-Z8d-3Bz_c_A0rl96DY",
@@ -30,10 +29,10 @@ if(document.getElementById('registerForm')){
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       await setDoc(doc(db, 'users', userCredential.user.uid), {
-        fullName, phone, nationalId, email, createdAt: new Date()
+        fullName, phone, nationalId, email, createdAt: serverTimestamp()
       });
       alert('تم التسجيل بنجاح');
-      window.location.href = 'login.html';
+      window.location.href = 'dashboard.html';
     } catch(err) {
       alert(err.message);
     }
@@ -57,7 +56,7 @@ if(document.getElementById('loginForm')){
 
 // Dashboard
 onAuthStateChanged(auth, async (user) => {
-  if(user){
+  if(user && document.getElementById('userInfo')){
     const uid = user.uid;
     const userDoc = await getDoc(doc(db, 'users', uid));
     if(userDoc.exists()){
@@ -106,10 +105,8 @@ onAuthStateChanged(auth, async (user) => {
       alert(`تم تقديم طلب سحب ${amount} إلى ${bank}`);
     });
 
-  } else {
-    if(window.location.pathname.includes('dashboard.html')){
-      window.location.href = 'login.html';
-    }
+  } else if(document.getElementById('userInfo')){
+    window.location.href = 'login.html';
   }
 });
 
