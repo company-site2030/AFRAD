@@ -1,235 +1,64 @@
-/* ===== عام ===== */
 body {
   font-family: 'Tajawal', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #333;
-  direction: rtl;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  margin: 0; padding: 0;
+  direction: rtl; color: #333;
+  background: linear-gradient(135deg,#4facfe 0%,#00f2fe 100%);
   min-height: 100vh;
 }
 
-/* ===== الهيدر ===== */
 header.site-header {
-  background: linear-gradient(90deg, #4facfe, #00f2fe);
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: linear-gradient(90deg,#4facfe,#00f2fe);
+  color: white; padding: 15px 20px;
+  display: flex; justify-content: space-between; align-items: center;
   border-bottom: 2px solid #2575fc;
 }
 
-header.site-header h1 {
-  font-size: 24px;
-}
-
 header nav a.cta, header nav button {
-  display: inline-block;
-  background: #2575fc;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
-  margin-left: 10px;
-  cursor: pointer;
+  background: #2575fc; color: #fff; padding: 10px 20px;
+  border-radius: 10px; text-decoration: none; font-weight: bold;
+  margin-left: 10px; cursor: pointer; border: none;
   transition: 0.3s ease;
-  border: none;
 }
 
 header nav a.cta:hover, header nav button:hover {
-  background: #6a11cb;
-  transform: scale(1.05);
+  background: #6a11cb; transform: scale(1.05);
 }
 
-/* ===== صفحات التسجيل والدخول ===== */
 .form-page {
-  max-width: 450px;
-  margin: 60px auto;
+  max-width: 450px; margin: 60px auto;
   background: rgba(255,255,255,0.95);
-  padding: 40px 30px;
-  border-radius: 20px;
+  padding: 40px 30px; border-radius: 15px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-  backdrop-filter: blur(8px);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(8px); text-align: center;
 }
 
-.form-page:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+.form-page h2 { color:#004080; margin-bottom:25px; font-size:28px; }
+.form-page label { display:block; margin-top:15px; font-weight:bold; text-align:right; }
+.form-page input { width:100%; padding:12px 15px; margin-top:5px; border-radius:10px; border:1px solid #ccc; font-size:16px; }
+.form-page button { width:100%; margin-top:25px; padding:12px; background:#2575fc; color:white; border:none; border-radius:10px; font-weight:bold; font-size:18px; cursor:pointer; }
+.form-page button:hover { background:#6a11cb; transform:translateY(-2px); }
+.form-page p { margin-top:20px; font-size:14px; color:#555; }
+.form-page p a { color:#2575fc; text-decoration:none; }
+.form-page p a:hover { text-decoration:underline; }
+
+.hero, .features {
+  background: rgba(255,255,255,0.95); margin:30px auto; padding:30px 25px; border-radius:15px; max-width:800px; text-align:center; box-shadow:0 8px 25px rgba(0,0,0,0.15); backdrop-filter: blur(5px);
 }
 
-.form-page h2 {
-  margin-bottom: 25px;
-  color: #004080;
-  font-weight: bold;
-  font-size: 28px;
-}
+.hero h2 { font-size:28px; color:#004080; margin-bottom:15px; }
+.hero p { font-size:16px; margin-bottom:20px; color:#555; }
+.hero a.cta { font-size:18px; padding:12px 25px; }
 
-.form-page label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-  text-align: right;
-}
+.features ul { list-style: disc; margin: 10px 0 0 20px; }
 
-.form-page input, .form-page select {
-  width: 100%;
-  padding: 12px 15px;
-  margin-top: 5px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
-}
+.dashboard { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; margin:30px 20px; }
+.card { background: rgba(255,255,255,0.95); padding:25px; border-radius:15px; box-shadow:0 8px 25px rgba(0,0,0,0.2); text-align:center; font-weight:bold; color:#004080; cursor:pointer; }
+.card:hover { transform:translateY(-5px); box-shadow:0 15px 40px rgba(0,0,0,0.25); background: rgba(255,255,255,1); }
 
-.form-page input:focus, .form-page select:focus {
-  border-color: #2575fc;
-  box-shadow: 0 0 10px rgba(37,117,252,0.3);
-  outline: none;
-}
+.site-footer { background:#004080; color:white; text-align:center; padding:15px; margin-top:20px; }
 
-.form-page button {
-  width: 100%;
-  margin-top: 25px;
-  padding: 12px;
-  background: #2575fc;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 18px;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.form-page button:hover {
-  background: #6a11cb;
-  transform: translateY(-2px);
-}
-
-.form-page p {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #555;
-}
-
-.form-page p a {
-  color: #2575fc;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.form-page p a:hover {
-  text-decoration: underline;
-}
-
-/* ===== Hero الصفحة الرئيسية ===== */
-.hero {
-  display: flex;
-  justify-content: center;
-}
-
-.hero-content {
-  background: rgba(255,255,255,0.95);
-  padding: 35px 30px;
-  border-radius: 20px;
-  max-width: 800px;
-  margin: 40px auto;
-  text-align: center;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
-  backdrop-filter: blur(6px);
-}
-
-.hero-content h2 {
-  font-size: 30px;
-  color: #004080;
-  margin-bottom: 15px;
-}
-
-.hero-content p {
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 25px;
-}
-
-.hero-content a.cta {
-  font-size: 18px;
-  padding: 12px 25px;
-}
-
-/* ===== Features الصفحة الرئيسية ===== */
-.features-content {
-  background: rgba(255,255,255,0.95);
-  padding: 25px 20px;
-  border-radius: 20px;
-  max-width: 800px;
-  margin: 30px auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  text-align: center;
-}
-
-.features-content h3 {
-  font-size: 22px;
-  color: #004080;
-  margin-bottom: 15px;
-}
-
-.features-content ul {
-  list-style: disc;
-  margin-left: 20px;
-  color: #333;
-  font-size: 16px;
-  text-align: right;
-}
-
-/* ===== Dashboard البطاقات ===== */
-.dashboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin: 30px 20px;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  font-weight: bold;
-  color: #004080;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-  background: rgba(255, 255, 255, 1);
-}
-
-/* ===== Footer ===== */
-.site-footer {
-  background: #004080;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 20px;
-}
-
-/* ===== متجاوب ===== */
-@media (max-width: 768px) {
-  header.site-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  header nav {
-    margin-top: 10px;
-  }
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
+@media (max-width:768px){
+  header.site-header { flex-direction: column; align-items:flex-start; }
+  header nav { margin-top:10px; }
+  .dashboard { grid-template-columns:1fr; }
 }
