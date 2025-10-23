@@ -1,13 +1,22 @@
-
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // قاعدة المستخدمين العاديين
     match /users/{userId} {
-      allow read, update, delete: if request.auth != null && request.auth.uid == userId;
-      allow create: if request.auth != null && request.auth.uid == userId &&
+      allow read, update: if request.auth.uid == userId;
+      allow create: if request.auth.uid == userId &&
                     request.resource.data.keys().hasAll(['fullName','phone','nationalId','email','createdAt']) &&
                     request.resource.data.email == request.auth.token.email;
+      allow delete: if false;
     }
+
+    // قاعدة المسؤول
+    match /admin/{doc} {
+      allow read, write: if request.auth.uid == "ضع_UID_المسؤول_هنا";
+    }
+
+    // أي مستند آخر ممنوع الوصول له
     match /{document=**} {
       allow read, write: if false;
     }
