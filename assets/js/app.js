@@ -1,9 +1,8 @@
-// Firebase setup
+// استورد Firebase من SDK الجديد
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 
-// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAkTnnJRI_N-uIN-Z8d-3Bz_c_A0rl96DY",
   authDomain: "afrad-9cac8.firebaseapp.com",
@@ -14,14 +13,11 @@ const firebaseConfig = {
   measurementId: "G-JPF44HRBGW"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ==========================
 // تسجيل مستخدم جديد
-// ==========================
 if(document.getElementById('registerForm')){
   document.getElementById('registerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -44,15 +40,12 @@ if(document.getElementById('registerForm')){
   });
 }
 
-// ==========================
-// تسجيل دخول
-// ==========================
+// تسجيل الدخول
 if(document.getElementById('loginForm')){
   document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
-
     try {
       await signInWithEmailAndPassword(auth, email, password);
       window.location.href = 'dashboard.html';
@@ -62,14 +55,10 @@ if(document.getElementById('loginForm')){
   });
 }
 
-// ==========================
 // Dashboard
-// ==========================
 onAuthStateChanged(auth, async (user) => {
   if(user){
     const uid = user.uid;
-
-    // بيانات المستخدم
     const userDoc = await getDoc(doc(db, 'users', uid));
     if(userDoc.exists()){
       const data = userDoc.data();
@@ -82,7 +71,6 @@ onAuthStateChanged(auth, async (user) => {
       `;
     }
 
-    // بيانات المحفظة (رصيد افتراضي)
     const walletDoc = await getDoc(doc(db, 'wallets', uid));
     let balance = 0;
     if(walletDoc.exists()){
@@ -93,7 +81,6 @@ onAuthStateChanged(auth, async (user) => {
       <p><strong>الرصيد:</strong> ${balance}</p>
     `;
 
-    // بيانات السحب
     document.getElementById('withdrawInfo').innerHTML = `
       <h3>السحب عبر البنوك المحلية</h3>
       <select id="bankSelect">
@@ -117,7 +104,6 @@ onAuthStateChanged(auth, async (user) => {
         return;
       }
       alert(`تم تقديم طلب سحب ${amount} إلى ${bank}`);
-      // لاحقاً هنا يمكنك تحديث الرصيد في Firestore
     });
 
   } else {
@@ -127,9 +113,7 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
-// ==========================
 // زر خروج
-// ==========================
 const logoutBtn = document.getElementById('logoutBtn');
 if(logoutBtn){
   logoutBtn.addEventListener('click', async () => {
