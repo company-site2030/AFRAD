@@ -4,125 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>دخول - حقوق الأفراد</title>
-  <style>
-    /* إعادة ضبط الأساسيات */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Tajawal', sans-serif;
-    }
-
-    body {
-      background: linear-gradient(to bottom right, #6a11cb, #2575fc);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      direction: rtl;
-    }
-
-    .form-page {
-      background-color: #fff;
-      padding: 40px 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .form-page:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-    }
-
-    h2 {
-      margin-bottom: 25px;
-      color: #333;
-      font-size: 28px;
-    }
-
-    form label {
-      display: block;
-      margin: 15px 0 5px;
-      font-weight: 500;
-      color: #555;
-      text-align: right;
-    }
-
-    form input {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-      transition: border 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    form input:focus {
-      border-color: #2575fc;
-      box-shadow: 0 0 8px rgba(37, 117, 252, 0.3);
-      outline: none;
-    }
-
-    form button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 10px;
-      background-color: #2575fc;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    form button:hover {
-      background-color: #6a11cb;
-      transform: translateY(-2px);
-    }
-
-    p {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #555;
-    }
-
-    p a {
-      color: #2575fc;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    p a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 450px) {
-      .form-page {
-        padding: 30px 20px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="login-page">
   <div class="form-page">
     <h2>تسجيل الدخول</h2>
     <form id="loginForm">
       <label>الإيميل</label>
-      <input type="email" id="loginEmail" required placeholder="أدخل بريدك الإلكتروني">
-
+      <input type="email" id="loginEmail" required>
       <label>كلمة المرور</label>
-      <input type="password" id="loginPassword" required placeholder="أدخل كلمة المرور">
-
+      <input type="password" id="loginPassword" required>
       <button type="submit">دخول</button>
     </form>
     <p>ليس لديك حساب؟ <a href="register.html">سجل الآن</a></p>
   </div>
-
   <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
