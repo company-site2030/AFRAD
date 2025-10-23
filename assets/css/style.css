@@ -7,29 +7,37 @@ body {
   padding: 0;
   direction: rtl;
   color: #333;
-  background: linear-gradient(135deg,#4facfe 0%,#00f2fe 100%);
   min-height: 100vh;
+  background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
 }
 
 header.site-header {
-  background: linear-gradient(90deg,#4facfe,#00f2fe);
+  background: rgba(255,255,255,0.1);
   color: white;
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #2575fc;
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid rgba(255,255,255,0.3);
 }
 
 header nav a.cta,
 header nav button {
-  background: #2575fc;
+  background: rgba(255,255,255,0.2);
   color: #fff;
-  padding: 10px 20px;
-  border-radius: 10px;
-  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 8px;
   cursor: pointer;
   border: none;
   transition: 0.3s ease;
@@ -37,18 +45,18 @@ header nav button {
 
 header nav a.cta:hover,
 header nav button:hover {
-  background: #6a11cb;
+  background: rgba(255,255,255,0.4);
   transform: scale(1.05);
 }
 
 /* =======================
-   Forms (Register/Login)
+   Forms
 ======================= */
 .form-page {
-  max-width: 450px;
+  max-width: 400px;
   margin: 60px auto;
   background: rgba(255,255,255,0.95);
-  padding: 40px 30px;
+  padding: 30px 25px;
   border-radius: 15px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
   backdrop-filter: blur(8px);
@@ -57,36 +65,36 @@ header nav button:hover {
 
 .form-page h2 {
   color: #004080;
-  margin-bottom: 25px;
-  font-size: 28px;
+  margin-bottom: 20px;
+  font-size: 26px;
 }
 
 .form-page label {
   display: block;
-  margin-top: 15px;
+  margin-top: 12px;
   font-weight: bold;
   text-align: right;
 }
 
 .form-page input {
   width: 100%;
-  padding: 12px 15px;
+  padding: 10px 12px;
   margin-top: 5px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .form-page button {
   width: 100%;
-  margin-top: 25px;
-  padding: 12px;
-  background: #2575fc;
+  margin-top: 20px;
+  padding: 10px;
+  background: #004080;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -96,13 +104,13 @@ header nav button:hover {
 }
 
 .form-page p {
-  margin-top: 20px;
+  margin-top: 15px;
   font-size: 14px;
   color: #555;
 }
 
 .form-page p a {
-  color: #2575fc;
+  color: #004080;
   text-decoration: none;
 }
 
@@ -111,18 +119,17 @@ header nav button:hover {
 }
 
 /* =======================
-   Hero & Features Section
+   Hero & Features
 ======================= */
 .hero,
 .features {
   background: rgba(255,255,255,0.95);
   margin: 30px auto;
-  padding: 30px 25px;
+  padding: 25px 20px;
   border-radius: 15px;
   max-width: 800px;
   text-align: center;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  backdrop-filter: blur(5px);
 }
 
 .hero h2 {
@@ -138,8 +145,8 @@ header nav button:hover {
 }
 
 .hero a.cta {
-  font-size: 18px;
-  padding: 12px 25px;
+  font-size: 16px;
+  padding: 10px 20px;
 }
 
 .features ul {
@@ -160,7 +167,7 @@ header nav button:hover {
 
 .card {
   background: rgba(255,255,255,0.95);
-  padding: 25px;
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   text-align: center;
@@ -173,7 +180,6 @@ header nav button:hover {
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-  background: rgba(255,255,255,1);
 }
 
 /* =======================
