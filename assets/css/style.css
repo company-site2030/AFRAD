@@ -1,10 +1,12 @@
 /* ===== عام ===== */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Tajawal', Arial, sans-serif;
   margin: 0;
   padding: 0;
   color: #333;
   direction: rtl;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  min-height: 100vh;
 }
 
 /* ===== الهيدر ===== */
@@ -34,7 +36,7 @@ header nav a:hover, header nav button:hover {
   background: #003366;
 }
 
-/* ===== الأزرار CTA ===== */
+/* ===== أزرار CTA ===== */
 a.cta {
   display: inline-block;
   background: #004080;
@@ -52,72 +54,88 @@ a.cta:hover {
   transform: scale(1.05);
 }
 
-/* ===== الصفحة الرئيسية ===== */
-.hero {
-  background: #e6f2ff;
-  padding: 30px;
-  border-radius: 10px;
-  margin: 20px auto;
-}
-
-.features ul {
-  list-style: disc;
-  margin: 10px 0 20px 20px;
-}
-
 /* ===== النماذج ===== */
-body.register-page, body.login-page {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  min-height: 100vh;
-}
-
 .form-page {
   max-width: 450px;
   margin: 60px auto;
   background: rgba(255,255,255,0.95);
-  padding: 35px 30px;
+  padding: 40px 30px;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  backdrop-filter: blur(5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-page:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.3);
 }
 
 .form-page h2 {
   margin-bottom: 25px;
-  text-align: center;
   color: #004080;
   font-weight: bold;
+  font-size: 28px;
 }
 
 .form-page label {
-  margin-top: 12px;
+  display: block;
+  margin-top: 15px;
   font-weight: bold;
+  text-align: right;
 }
 
 .form-page input, .form-page select {
   width: 100%;
-  padding: 10px;
+  padding: 12px 15px;
   margin-top: 5px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid #ccc;
-  box-sizing: border-box;
+  font-size: 16px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-page input:focus, .form-page select:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 10px rgba(37,117,252,0.3);
+  outline: none;
 }
 
 .form-page button {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 12px;
-  background: #004080;
+  background: #2575fc;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .form-page button:hover {
-  background: #003366;
-  transform: scale(1.02);
-  transition: 0.2s;
+  background: #6a11cb;
+  transform: translateY(-2px);
+}
+
+/* روابط النصوص */
+.form-page p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-page p a {
+  color: #2575fc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.form-page p a:hover {
+  text-decoration: underline;
 }
 
 /* ===== البطاقات ===== */
@@ -131,8 +149,8 @@ body.register-page, body.login-page {
 .card {
   background: white;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   text-align: center;
 }
 
